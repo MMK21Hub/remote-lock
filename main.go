@@ -20,6 +20,10 @@ func main() {
 	hostname := os.Getenv("HOSTNAME")
 	allowedClient := os.Getenv("ALLOWED_CLIENT")
 	token := os.Getenv("TOKEN")
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "80"
+	}
 
 	if hostname == "" || allowedClient == "" || token == "" {
 		log.Fatal("HOSTNAME, ALLOWED_CLIENT or TOKEN not set in .env")
@@ -30,7 +34,7 @@ func main() {
 	}
 	defer srv.Close()
 
-	ln, err := srv.Listen("tcp", ":443")
+	ln, err := srv.Listen("tcp", ":"+port)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -70,6 +74,6 @@ func main() {
 		w.Write([]byte("ok"))
 	})
 
-	log.Println("pc-lock-service running on Tailnet HTTPS port 443")
+	log.Printf("pc-lock-service running on Tailnet HTTP port %s", port)
 	http.Serve(ln, nil)
 }
