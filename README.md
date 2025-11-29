@@ -65,3 +65,20 @@ journalctl --user -u remote-lock.service -f
 # Enable on boot, if all looks good
 systemctl --user enable remote-lock.service
 ```
+
+## Home Assistant action
+
+Integrate it into Home Assistant by adding something like this to your `configuration.yaml`:
+
+```yaml
+rest_command:
+  pc_lock:
+    url: "http://100.78.139.128:51335/lock" # remote-pc-lock-service
+    method: POST
+    headers:
+      X-Token: !secret pc_lock_token
+    timeout: 3
+    verify_ssl: false
+```
+
+Create the `pc_lock_token` secret (in `secrets.yaml`) and adjust the hostname and port to match your setup. Good luck!
