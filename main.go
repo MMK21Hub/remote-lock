@@ -12,10 +12,7 @@ import (
 
 func main() {
 	// Load .env
-	err := godotenv.Load()
-	if err != nil {
-		log.Fatal("Error loading .env file:", err)
-	}
+	dotenv_err := godotenv.Load()
 
 	hostname := os.Getenv("HOSTNAME")
 	allowedClient := os.Getenv("ALLOWED_CLIENT")
@@ -26,6 +23,9 @@ func main() {
 	}
 
 	if hostname == "" || allowedClient == "" || token == "" {
+		if dotenv_err != nil {
+			log.Printf("Warning: .env file failed to load: %v", dotenv_err)
+		}
 		log.Fatal("HOSTNAME, ALLOWED_CLIENT or TOKEN not set in .env")
 	}
 
