@@ -32,7 +32,7 @@ cp dist/remote-lock ~/.local/bin/remote-lock
 
 ## Deployment
 
-First, create a `remote-lock.env` file somewhere (based on `.env.example`), and **ensure it's not world-readable** (e.g. `sudo chmod 600`) (secret tokens be present!).
+First, create a `remote-lock.env` file somewhere (based on `.env.example`), and **ensure it's not world-readable** (e.g. `chmod 600`) (secret tokens be present!).
 
 Create `~/.config/systemd/user/remote-lock.service`:
 
