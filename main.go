@@ -74,6 +74,6 @@ func main() {
 		w.Write([]byte("ok"))
 	})
 
-	log.Printf("pc-lock-service running on Tailnet HTTP port %s", port)
+	log.Printf("remote-lock running on Tailnet HTTP port %s", port)
 	http.Serve(ln, nil)
 }
