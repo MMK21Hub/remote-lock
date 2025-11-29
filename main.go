@@ -3,17 +3,30 @@ package main
 import (
 	"log"
 	"net/http"
+	"os"
 	"os/exec"
 
+	"github.com/joho/godotenv"
 	"tailscale.com/tsnet"
 )
 
-const allowedClient = "rpi"
-const token = "changeme-superlong-token" // TODO
-
 func main() {
+	// Load .env
+	err := godotenv.Load()
+	if err != nil {
+		log.Fatal("Error loading .env file:", err)
+	}
+
+	hostname := os.Getenv("HOSTNAME")
+	allowedClient := os.Getenv("ALLOWED_CLIENT")
+	token := os.Getenv("TOKEN")
+
+	if hostname == "" || allowedClient == "" || token == "" {
+		log.Fatal("HOSTNAME, ALLOWED_CLIENT or TOKEN not set in .env")
+	}
+
 	srv := &tsnet.Server{
-		Hostname: "remote-lock-service",
+		Hostname: hostname,
 	}
 	defer srv.Close()
 

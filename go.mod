@@ -4,6 +4,8 @@ go 1.25.3
 
 require tailscale.com v1.92.0
 
+require github.com/joho/godotenv v1.5.1
+
 require (
 	filippo.io/edwards25519 v1.1.0 // indirect
 	github.com/akutz/memconn v0.1.0 // indirect
@@ -20,6 +22,7 @@ require (
 	github.com/google/go-cmp v0.7.0 // indirect
 	github.com/google/uuid v1.6.0 // indirect
 	github.com/hdevalence/ed25519consensus v0.2.0 // indirect
+	github.com/joho/godotenv v1.5.1 // indirect
 	github.com/jsimonetti/rtnetlink v1.4.0 // indirect
 	github.com/klauspost/compress v1.18.0 // indirect
 	github.com/mdlayher/netlink v1.7.3-0.20250113171957-fbb4dce95f42 // indirect
